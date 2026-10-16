@@ -1,0 +1,182 @@
+# Product Requirements Document (PRD)
+## Tadoba Forest Intelligence & Monitoring System
+
+**Version:** 1.0 — Initial Scope  
+**Project:** Wildhack 2K26  
+**Target users:** Forest officers, patrol staff and authorised administrators
+
+## 1. Product Overview
+
+The Tadoba Forest Intelligence & Monitoring System is a centralised software platform that helps forest officers visualise forest geography, analyse vegetation and animal observations, and review relevant information through a single dashboard.
+
+The system will integrate geospatial data and machine-learning model outputs to support forest monitoring and evidence-based decision-making.
+
+The initial version will focus on the core workflow, dataset preparation, model development, map visualisation and dashboard integration.
+
+## 2. Problem Statement
+
+Forest monitoring involves multiple types of information, including vegetation, animal observations, geographical boundaries and incident records.
+
+These data sources may differ in format, location accuracy and availability. Analysing them independently makes it difficult to develop a unified picture of the monitored landscape.
+
+The proposed system will provide a common interface to visualise and analyse these data sources. It will not assume that animal presence or vegetation characteristics alone indicate poaching activity.
+
+## 3. Product Objectives
+
+1. Create a georeferenced digital representation of the selected forest area.
+2. Develop a vegetation-classification dataset and model.
+3. Integrate animal-detection outputs into the same geographical framework.
+4. Display vegetation and animal observations as separate map layers.
+5. Provide forest officers with a central dashboard for viewing model outputs and reviewing flagged observations.
+
+## 4. Primary User Roles
+
+### Forest Officer
+- View the forest map and its available data layers.
+- Review vegetation classifications and animal observations.
+- Inspect flagged records and supporting evidence.
+- View the location, timestamp and confidence of model outputs.
+
+### Administrator
+- Manage authorised users and access permissions.
+- Manage available datasets and map layers.
+- Review model status and system records.
+- Configure dashboard settings.
+
+### Patrol Staff
+- Submit or upload authorised field observations where supported.
+- Associate observations with location, time and supporting evidence.
+- Synchronise records when connectivity becomes available, if offline field entry is implemented.
+
+## 5. Functional Requirements
+
+### Module 1: Geospatial Map
+- Display the selected forest area on an interactive map.
+- Support available core, buffer and surrounding-area boundaries.
+- Display georeferenced imagery and relevant geographical features.
+- Allow users to toggle individual data layers.
+- Associate observations with coordinates and timestamps.
+
+### Module 2: Vegetation Dataset and Classification
+- Define the vegetation classes required for the selected study area.
+- Store labelled images and associated geographical metadata.
+- Train a vegetation-classification model using the prepared dataset.
+- Classify supported vegetation types in suitable input imagery.
+- Display classifications on the map where spatial alignment is available.
+- Record model confidence and validation results.
+
+### Module 3: Animal Detection
+- Process authorised camera images or prepared image datasets.
+- Detect and classify supported animal species.
+- Store species labels, timestamps, coordinates and confidence scores where available.
+- Display animal observations separately from vegetation classifications.
+- Allow authorised users to inspect the original image supporting an observation.
+
+### Module 4: Data Integration
+- Use a common record structure for model outputs and field observations.
+- Associate records with a location, timestamp, source and processing status.
+- Display related observations together without automatically assuming they describe the same event.
+- Preserve the distinction between detected observations, unverified reports and confirmed incidents.
+
+### Module 5: Forest Officer Dashboard
+- Show an overview of the mapped area and available observations.
+- Provide filters for date, observation type, location and verification status.
+- Display model confidence and supporting evidence.
+- Allow authorised users to review and annotate records.
+- Distinguish missing data from confirmed absence of activity.
+
+### Module 6: Alerts
+- Support configurable notifications for selected, reviewed conditions.
+- Record alert creation and delivery status where available.
+- Evaluate SMS integration as a connectivity-independent-from-mobile-internet notification channel, subject to cellular coverage.
+- Do not automatically label an observation as a crime solely because a model flagged it.
+
+## 6. Mobile Application Components
+
+The initial product does not require a separate public-facing mobile application.
+
+The following mobile-related capabilities may be included where required:
+
+- **Mobile-responsive dashboard:** lets authorised officers access the dashboard through a compatible phone browser.
+- **Field observation interface:** allows authorised staff to submit observations and location information.
+- **Offline entry and synchronisation:** a potential extension for areas without reliable data connectivity.
+- **SMS notifications:** short alerts for authorised recipients where cellular SMS service is available.
+
+A dedicated Android or iOS application is outside the initial scope unless required by a validated operational need.
+
+## 7. Data Requirements
+
+The initial system may use:
+
+- Authorised forest boundary and geographical datasets.
+- Suitable satellite or georeferenced field imagery.
+- Labelled vegetation images.
+- Labelled animal images.
+- Available GPS coordinates and timestamps.
+- Authorised field observations and verified historical incident records, where accessible.
+
+Every dataset must record its source, licence or permission status, geographical coverage and relevant limitations.
+
+Synthetic records may be used for demonstration, but they must be clearly labelled and must not be presented as actual Tadoba incidents.
+
+## 8. Model Integration Workflow
+
+1. Collect suitable imagery and geographical data.
+2. Prepare and validate the vegetation dataset.
+3. Train and evaluate the vegetation model.
+4. Prepare and evaluate the animal-detection model.
+5. Standardise model outputs into a common record structure.
+6. Associate records with geographical locations where supported.
+7. Display the results as independent layers on the dashboard.
+8. Add cross-source analysis only where the available evidence supports it.
+
+Vegetation classification does not establish animal presence. Animal detection does not establish poaching. Any future risk model must be validated against appropriate incident data.
+
+## 9. Non-Functional Requirements
+
+- Role-based access control.
+- Secure storage of evidence and user records.
+- Traceability of significant record changes.
+- Efficient loading of map layers and observation records.
+- Clear handling of missing, delayed or low-confidence data.
+- Compatibility with supported desktop and mobile browsers.
+- Extensible interfaces for future model integration.
+
+## 10. Out of Scope for the Initial Version
+
+- A dedicated citizen-facing mobile application.
+- Deployment of new physical camera infrastructure.
+- Claims of live integration with existing Tadoba camera systems without access approval.
+- Automated identification or accusation of individual poachers.
+- Dark-web scraping or unverified online intelligence collection.
+- Predictive poaching-risk claims without suitable historical data and validation.
+- Blockchain deployment or decentralised storage before a demonstrated requirement.
+- Automated enforcement decisions.
+
+## 11. Validation and Acceptance Criteria
+
+The initial system will be evaluated on:
+
+- Vegetation classification performance against independently labelled test data.
+- Animal-detection precision and recall on a held-out dataset.
+- Correct geographical placement of observations.
+- Correct display of source, timestamp and model confidence.
+- Reliable separation of observations, reports and verified incidents.
+- Dashboard filtering and evidence-review functionality.
+- Clear identification of synthetic data and unavailable integrations.
+- Successful demonstration of the end-to-end workflow using authorised or clearly labelled demonstration data.
+
+Model acceptance thresholds must be defined after establishing the dataset, class distribution and intended operating conditions.
+
+## 12. Initial Deliverable
+
+The first demonstrable version will contain:
+
+1. A selected-area forest map with available boundary layers.
+2. A documented vegetation dataset and baseline model.
+3. An animal-detection model or validated baseline integration.
+4. A common format for georeferenced model outputs.
+5. A forest-officer dashboard with map layers and evidence review.
+6. A demonstration dataset and documented validation results.
+
+**Product principle:** Build one integrated monitoring and analysis platform, not another disconnected application. Every additional module must contribute a measurable capability and must not duplicate an existing system without a clear reason.
